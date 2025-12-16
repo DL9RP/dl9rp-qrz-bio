@@ -6,19 +6,16 @@
 <title>DL9RP – QRZ Bio</title>
 
 <style>
-/* ===== TAB LOGIC (ROBUST) ===== */
-.dl9rp-style .panel { display:none; }
-.dl9rp-style .panel:target { display:block; }
-.dl9rp-style .panel.default { display:block; }
-.dl9rp-style .panel:target ~ .panel.default { display:none; }
+/* ===== TAB LOGIC (bewährt: Welcome ist Default und MUSS zuletzt kommen) ===== */
+.dl9rp-style .panel{display:none;}
+.dl9rp-style #welcome.panel{display:block;}
+.dl9rp-style .panel:target{display:block;}
+.dl9rp-style .panel:target ~ #welcome{display:none;}
 
 /* ===== BASE ===== */
-.dl9rp-style{
-  font-family:Arial,Helvetica,sans-serif;
-  color:#222;
-}
+.dl9rp-style{font-family:Arial,Helvetica,sans-serif; color:#222;}
 
-/* ===== ICONS (NICHT ÄNDERN) ===== */
+/* ICONS (wie bei dir, NICHT ändern) */
 .dl9rp-style .ico{
   font-size:17px;
   width:19px;
@@ -28,7 +25,7 @@
   line-height:1;
 }
 
-/* ===== OUTER FRAME ===== */
+/* OUTER FRAME */
 .dl9rp-style .wrap{
   background:#cfdcf0;
   border:1px solid #9fb0c9;
@@ -36,7 +33,7 @@
   border-radius:12px;
 }
 
-/* ===== TABS ===== */
+/* TAB BAR */
 .dl9rp-style .tabs{
   display:flex;
   gap:8px;
@@ -44,6 +41,7 @@
   margin-bottom:8px;
 }
 
+/* TAB */
 .dl9rp-style .tab{
   display:inline-flex;
   align-items:center;
@@ -59,6 +57,7 @@
   user-select:none;
 }
 
+/* ACTIVE TAB */
 .dl9rp-style .tab.active{
   background:#ffffff;
   font-weight:bold;
@@ -70,48 +69,42 @@
   position:relative;
 }
 
-/* ===== CONTENT BOX ===== */
+/* CONTENT BOX (Radius oben + unten sichtbar) */
 .dl9rp-style .content{
   background:#ffffff;
   border:1px solid #9aa9c0;
-  border-radius:12px;      /* oben & unten rund (wie du willst) */
+  border-radius:12px;        /* oben links/rechts + unten links/rechts rund */
   padding:16px 18px;
   min-height:650px;
-  position:relative;       /* für Welcome-Maske */
+  position:relative;
   z-index:1;
 }
 
-/* ===== WELCOME: Artefakt endgültig entfernen =====
-   Wir wollen, dass der Welcome-Tab links "nahtlos" in den Content läuft.
-   1) oben links am Content keine Rundung
-   2) zusätzlich eine kleine Maske, falls Border/Antialiasing trotzdem durchscheint
-*/
+/* Welcome soll oben links nahtlos sein (Artefakt vermeiden) */
 .dl9rp-style #welcome .content{
   border-top-left-radius:0;
 }
-
-/* Maske gegen das “Viertel-Radius”-Artefakt */
+/* Extra-Maske gegen 1px-Antialias/Seam */
 .dl9rp-style #welcome .content::before{
   content:"";
   position:absolute;
-  top:-1px;               /* minimal über den Border */
+  top:-1px;
   left:-1px;
-  width:16px;             /* etwas größer als Radius-Bereich */
-  height:16px;
-  background:#ffffff;     /* gleiche Farbe wie Content */
-  border-top-left-radius:0;
+  width:18px;
+  height:18px;
+  background:#ffffff;
   pointer-events:none;
 }
 
-/* ===== TEXT ===== */
-.dl9rp-style .title{ font-size:19px; font-weight:bold; margin:0 0 12px; }
-.dl9rp-style p{ font-size:16px; line-height:1.6; margin:10px 0; }
-.dl9rp-style .bullets{ font-size:16px; margin:0 0 12px 22px; padding:0; }
-.dl9rp-style .small{ font-size:15px; color:#333; }
+/* TEXT */
+.dl9rp-style .title{font-size:19px;font-weight:bold;margin:0 0 12px;}
+.dl9rp-style p{font-size:16px;line-height:1.6;margin:10px 0;}
+.dl9rp-style .bullets{font-size:16px;margin:0 0 12px 22px;padding:0;}
+.dl9rp-style .small{font-size:15px;color:#333;}
 
-/* ===== SECTION BARS ===== */
+/* SECTION BARS */
 .dl9rp-style .bar{
-  margin:12px 0 10px;
+  margin:12px 0 10px 0;
   padding:6px 10px;
   border:1px solid #a6a6a6;
   background:#e00000;
@@ -126,7 +119,7 @@
   border-color:#c99a3c;
 }
 
-/* ===== TABLE ===== */
+/* EQUIPMENT TABLE */
 .dl9rp-style table.spec{
   width:100%;
   border-collapse:collapse;
@@ -138,9 +131,8 @@
   border-top:1px solid #f0f0f0;
   vertical-align:top;
 }
-.dl9rp-style td.k{ width:200px; font-weight:bold; color:#333; }
-.dl9rp-style td.v{ color:#111; }
-
+.dl9rp-style td.k{width:200px;font-weight:bold;color:#333;}
+.dl9rp-style td.v{color:#111;}
 .dl9rp-style .subhead{
   font-size:16px;
   font-weight:bold;
@@ -148,7 +140,7 @@
   color:#2b2b2b;
 }
 
-/* ===== IMAGE PLACEHOLDERS ===== */
+/* IMAGE PLACEHOLDERS */
 .dl9rp-style .imgbox{
   border:1px solid #c7c7c7;
   background:#fafafa;
@@ -166,18 +158,16 @@
   border-radius:12px;
 }
 
-/* ===== LINKS ===== */
-.dl9rp-style a{ color:#1b4f8a; }
-.dl9rp-style a:hover{ text-decoration:underline; }
+/* LINKS */
+.dl9rp-style a{color:#1b4f8a;}
+.dl9rp-style a:hover{text-decoration:underline;}
 
-/* ===== MOBILE ===== */
+/* MOBILE */
 @media (max-width:700px){
-  .dl9rp-style .tab{ font-size:15px; padding:8px 12px; }
-  .dl9rp-style p,
-  .dl9rp-style .bullets,
-  .dl9rp-style table.spec{ font-size:15px; }
-  .dl9rp-style .content{ min-height:0; }
-  .dl9rp-style td.k{ width:150px; }
+  .dl9rp-style .tab{font-size:15px;padding:8px 12px;}
+  .dl9rp-style p,.dl9rp-style .bullets,.dl9rp-style table.spec{font-size:15px;}
+  .dl9rp-style .content{min-height:0;}
+  .dl9rp-style td.k{width:150px;}
 }
 </style>
 </head>
@@ -300,7 +290,9 @@
         </ul>
 
         <div class="bar">Portable (optional)</div>
-        <p class="small">Add your portable rig / battery / antennas here later.</p>
+        <p class="small">
+          Add your portable rig / battery / antennas here later (if you want it like OE4JHW’s sections).
+        </p>
       </div>
     </div>
   </div>
@@ -323,8 +315,8 @@
         <div class="bar">Portable / Outdoor Operation</div>
 
         <p>
-          Portable operation fits perfectly with my outdoor hobbies — simple setups,
-          quick deployment and fun from nature. (You can add your POTA links/stats/photos here later.)
+          Portable operation fits perfectly with my outdoor hobbies — simple setups, quick deployment and fun from nature.
+          (You can add your POTA links/stats/photos here later.)
         </p>
 
         <ul class="bullets">
@@ -364,7 +356,7 @@
     </div>
   </div>
 
-  <!-- WELCOME (default) -->
+  <!-- WELCOME (Default – MUST be last) -->
   <div id="welcome" class="panel default">
     <div class="wrap">
       <div class="tabs">
