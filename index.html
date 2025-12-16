@@ -13,12 +13,12 @@
 .dl9rp-style .panel:target ~ .panel.default { display:none; }
 
 /* ===== BASE ===== */
-.dl9rp-style {
-  font-family: Arial, Helvetica, sans-serif;
+.dl9rp-style{
+  font-family:Arial,Helvetica,sans-serif;
   color:#222;
 }
 
-/* ===== ICONS (zurück wie vorher) ===== */
+/* ===== ICONS (unverändert) ===== */
 .dl9rp-style .ico{
   font-size:17px;
   width:19px;
@@ -63,26 +63,26 @@
   background:#ffffff;
   font-weight:bold;
   color:#1b4f8a;
-  border-bottom:0;          /* Tab “dockt” an */
+  border-bottom:0;
   border-radius:8px 8px 0 0;
-  margin-bottom:-10px;      /* stärker, damit Content-Kante sauber sitzt */
+  margin-bottom:-10px;
   z-index:5;
 }
 
-/* ===== CONTENT BOX (FIX: oben links/rechts Radius sichtbar) ===== */
+/* ===== CONTENT BOX ===== */
 .dl9rp-style .content{
   background:#ffffff;
   border:1px solid #9aa9c0;
-  border-radius:12px;       /* oben UND unten rund */
+  border-radius:12px;          /* oben & unten rund */
   padding:16px 18px;
   min-height:650px;
   position:relative;
   z-index:1;
 }
 
-/* damit der aktive Tab optisch “in” den Content läuft */
-.dl9rp-style .content{
-  margin-top:0;
+/* ===== FIX: Welcome soll oben links NAHTLOS sein ===== */
+.dl9rp-style #welcome .content{
+  border-top-left-radius:0;
 }
 
 /* ===== TEXT ===== */
@@ -146,6 +146,7 @@
   font-weight:bold;
   color:#333;
 }
+
 .dl9rp-style td.v{ color:#111; }
 
 .dl9rp-style .subhead{
@@ -193,206 +194,56 @@
 <body style="margin:0; padding:6px; background:#ffffff;">
 <div class="dl9rp-style">
 
-  <!-- ABOUT -->
-  <div id="about" class="panel">
-    <div class="wrap">
-      <div class="tabs">
-        <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
-        <a class="tab active" href="#about"><span class="ico">💡</span>ABOUT ME</a>
-        <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
-        <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
-        <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
-        <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
-      </div>
+<!-- ABOUT -->
+<div id="about" class="panel">
+<div class="wrap">
+<div class="tabs">
+<a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+<a class="tab active" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+<a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+<a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+<a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+<a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+</div>
 
-      <div class="content">
-        <h2 class="title">About Me</h2>
+<div class="content">
+<h2 class="title">About Me</h2>
 
-        <ul class="bullets">
-          <li><b>Name:</b> Patrick</li>
-          <li><b>Callsign:</b> DL9RP</li>
-          <li><b>QTH:</b> 86695 Nordendorf, Germany</li>
-          <li><b>Locator:</b> JN58jo</li>
-          <li><b>Licensed since:</b> 2023</li>
-        </ul>
+<ul class="bullets">
+<li><b>Name:</b> Patrick</li>
+<li><b>Callsign:</b> DL9RP</li>
+<li><b>QTH:</b> 86695 Nordendorf, Germany</li>
+<li><b>Locator:</b> JN58jo</li>
+<li><b>Licensed since:</b> 2023</li>
+</ul>
 
-        <p>
-          Hello my radio friends from all over the world.<br>
-          My name is Patrick and I was born 1983 in south Germany.
-          I live there for over 40 years and got infected with the HF-virus by the age of 10.
-          I started with CB-Radio in 1993 but due to lack of a good antenna unfortunately I got almost no DX contacts.
-        </p>
+<p>Hello my radio friends from all over the world.<br>
+My name is Patrick and I was born 1983 in south Germany.</p>
 
-        <p>
-          After years of silence my friend Michael
-          (<a href="https://www.qrz.com/db/DO1WMA" target="_blank" rel="noopener">DO1WMA</a>)
-          brought me back ON THE Air again and so 2023 I got my HAM license.
-        </p>
+<p class="small"><b>DARC OV:</b> T21 (Donauwörth) since 2024</p>
+</div>
+</div>
+</div>
 
-        <p>
-          Besides HAM radio there are a lot of different hobbies, as there should to be mentioned diving,
-          astronomy, astrophotography or go camping with my new love "Bully"... ;-).
-        </p>
+<!-- WELCOME (default) -->
+<div id="welcome" class="panel default">
+<div class="wrap">
+<div class="tabs">
+<a class="tab active" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+<a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+<a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+<a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+<a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+<a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+</div>
 
-        <p class="small">
-          <b>DARC OV:</b> T21 (Donauwörth) since 2024
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- QSL -->
-  <div id="qsl" class="panel">
-    <div class="wrap">
-      <div class="tabs">
-        <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
-        <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
-        <a class="tab active" href="#qsl"><span class="ico">⇄</span>QSL</a>
-        <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
-        <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
-        <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
-      </div>
-
-      <div class="content">
-        <h2 class="title">QSL Info</h2>
-
-        <div class="bar amber">QSL via LoTW, QRZ.com, eQSL.cc and Bureau</div>
-
-        <p class="small">
-          QSL via: <b>QRZ.com</b>, <b>LoTW</b>, <b>eQSL.cc</b> and <b>Bureau</b>.<br>
-          Please include band / mode / date (UTC).
-        </p>
-
-        <div class="bar">Notes</div>
-        <ul class="bullets">
-          <li>I try to keep confirmations up to date</li>
-          <li>No direct paper QSL required</li>
-        </ul>
-
-        <div class="imgbox">
-          <div class="imgph">[Optional: add a QSL picture here later]</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- EQUIPMENT -->
-  <div id="equipment" class="panel">
-    <div class="wrap">
-      <div class="tabs">
-        <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
-        <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
-        <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
-        <a class="tab active" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
-        <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
-        <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
-      </div>
-
-      <div class="content">
-        <h2 class="title">Equipment</h2>
-
-        <div class="bar">Home QTH</div>
-
-        <table class="spec">
-          <tr><td class="k">Transceiver No.1</td><td class="v">Icom IC-7300 (160–4m)</td></tr>
-          <tr><td class="k">Transceiver No.2</td><td class="v">Yaesu FTX-1 Field and Optima (160m–70cm)</td></tr>
-          <tr><td class="k">Output</td><td class="v">max. 100W</td></tr>
-          <tr><td class="k">Microphone</td><td class="v">Thomann t.bone BD200</td></tr>
-        </table>
-
-        <div class="subhead">Antennas</div>
-        <ul class="bullets">
-          <li>Hexbeam EAntenna HEX6B (6m – 20m)</li>
-          <li>Wire antenna 13.5m with CG-3000 antenna tuner</li>
-          <li>Diamond X-50 for 2m/70cm operation</li>
-        </ul>
-
-        <div class="bar">Portable (optional)</div>
-        <p class="small">Add your portable rig / battery / antennas here later.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- POTA -->
-  <div id="pota" class="panel">
-    <div class="wrap">
-      <div class="tabs">
-        <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
-        <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
-        <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
-        <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
-        <a class="tab active" href="#pota"><span class="ico">🌲</span>POTA</a>
-        <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
-      </div>
-
-      <div class="content">
-        <h2 class="title">Parks On The Air</h2>
-
-        <div class="bar">Portable / Outdoor Operation</div>
-
-        <p>
-          Portable operation fits perfectly with my outdoor hobbies — simple setups, quick deployment and fun from nature.
-          (You can add your POTA links/stats/photos here later.)
-        </p>
-
-        <ul class="bullets">
-          <li>HF portable operation</li>
-          <li>Battery powered setups</li>
-          <li>Wire & lightweight antennas</li>
-        </ul>
-
-        <div class="imgbox">
-          <div class="imgph">[Add POTA image / screenshot here later]</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PICTURES -->
-  <div id="pictures" class="panel">
-    <div class="wrap">
-      <div class="tabs">
-        <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
-        <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
-        <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
-        <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
-        <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
-        <a class="tab active" href="#pictures"><span class="ico">📷</span>PICTURES</a>
-      </div>
-
-      <div class="content">
-        <h2 class="title">Pictures</h2>
-
-        <div class="bar">My Hometown / Radio / Outdoor</div>
-
-        <div class="imgbox">
-          <div class="imgph">Add pictures here later (QRZ image links or uploads)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- WELCOME (default) -->
-  <div id="welcome" class="panel default">
-    <div class="wrap">
-      <div class="tabs">
-        <a class="tab active" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
-        <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
-        <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
-        <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
-        <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
-        <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
-      </div>
-
-      <div class="content">
-        <h2 class="title">Welcome</h2>
-        <p>
-          Welcome to my QRZ.com page.<br>
-          Thanks for the QSO and hope to meet you again on the bands. 73!
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="content">
+<h2 class="title">Welcome</h2>
+<p>Welcome to my QRZ.com page.<br>
+Thanks for the QSO and hope to meet you again on the bands. 73!</p>
+</div>
+</div>
+</div>
 
 </div>
 </body>
