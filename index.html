@@ -6,7 +6,7 @@
 <title>DL9RP – QRZ Bio</title>
 
 <style>
-/* ===== TAB LOGIC (QRZ-SAFE, STABIL) ===== */
+/* ===== TAB LOGIC (QRZ-STABIL) ===== */
 .dl9rp-style .panel{display:none;}
 .dl9rp-style #welcome.panel{display:block;}
 .dl9rp-style .panel:target{display:block;}
@@ -18,7 +18,7 @@
   color:#222;
 }
 
-/* ===== ICONS (NICHT VERÄNDERN) ===== */
+/* ===== ICONS (NICHT ÄNDERN) ===== */
 .dl9rp-style .ico{
   font-size:17px;
   width:19px;
@@ -59,6 +59,7 @@
   user-select:none;
 }
 
+/* ===== ACTIVE TAB ===== */
 .dl9rp-style .tab.active{
   background:#ffffff;
   font-weight:bold;
@@ -68,6 +69,18 @@
   margin-bottom:-10px;
   position:relative;
   z-index:5;
+}
+
+/* ===== FIX: linke Rahmenlinie unter WELCOME-Tab ===== */
+.dl9rp-style #welcome .tab.active::after{
+  content:"";
+  position:absolute;
+  left:-1px;
+  bottom:-14px;
+  width:1px;
+  height:14px;
+  background:#9aa9c0;
+  pointer-events:none;
 }
 
 /* ===== CONTENT BOX ===== */
@@ -81,58 +94,16 @@
   z-index:1;
 }
 
-/* ===== WELCOME: nahtlos + KEIN Rahmenbruch ===== */
+/* Welcome: keine Rundung oben links (nahtlos zum Tab) */
 .dl9rp-style #welcome .content{
   border-top-left-radius:0;
 }
 
-/* Maske nur für Ecke */
-.dl9rp-style #welcome .content::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:18px;
-  height:18px;
-  background:#ffffff;
-  pointer-events:none;
-}
-
-/* Rahmen links exakt nachzeichnen */
-.dl9rp-style #welcome .content::after{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:1px;
-  height:18px;
-  background:#9aa9c0;
-  pointer-events:none;
-}
-
 /* ===== TEXT ===== */
-.dl9rp-style .title{
-  font-size:19px;
-  font-weight:bold;
-  margin:0 0 12px;
-}
-
-.dl9rp-style p{
-  font-size:16px;
-  line-height:1.6;
-  margin:10px 0;
-}
-
-.dl9rp-style .bullets{
-  font-size:16px;
-  margin:0 0 12px 22px;
-  padding:0;
-}
-
-.dl9rp-style .small{
-  font-size:15px;
-  color:#333;
-}
+.dl9rp-style .title{font-size:19px;font-weight:bold;margin:0 0 12px;}
+.dl9rp-style p{font-size:16px;line-height:1.6;margin:10px 0;}
+.dl9rp-style .bullets{font-size:16px;margin:0 0 12px 22px;padding:0;}
+.dl9rp-style .small{font-size:15px;color:#333;}
 
 /* ===== SECTION BARS ===== */
 .dl9rp-style .bar{
@@ -145,7 +116,6 @@
   font-weight:bold;
   border-radius:10px;
 }
-
 .dl9rp-style .bar.amber{
   background:#f0a000;
   color:#1f1f1f;
@@ -159,21 +129,13 @@
   font-size:16px;
   margin-bottom:12px;
 }
-
 .dl9rp-style table.spec td{
   padding:6px 10px;
   border-top:1px solid #f0f0f0;
   vertical-align:top;
 }
-
-.dl9rp-style td.k{
-  width:200px;
-  font-weight:bold;
-  color:#333;
-}
-
+.dl9rp-style td.k{width:200px;font-weight:bold;color:#333;}
 .dl9rp-style td.v{color:#111;}
-
 .dl9rp-style .subhead{
   font-size:16px;
   font-weight:bold;
@@ -189,7 +151,6 @@
   text-align:center;
   border-radius:12px;
 }
-
 .dl9rp-style .imgph{
   font-size:15px;
   color:#666;
@@ -267,7 +228,7 @@ My name is Patrick and I was born 1983 in south Germany.</p>
 </div>
 </div>
 
-<!-- WELCOME (MUSS ZULETZT KOMMEN) -->
+<!-- WELCOME (DEFAULT – MUSS ZULETZT KOMMEN) -->
 <div id="welcome" class="panel">
 <div class="wrap">
 <div class="tabs">
@@ -281,8 +242,10 @@ My name is Patrick and I was born 1983 in south Germany.</p>
 
 <div class="content">
 <h2 class="title">Welcome</h2>
-<p>Welcome to my QRZ.com page.<br>
-Thanks for the QSO and hope to meet you again on the bands. 73!</p>
+<p>
+Welcome to my QRZ.com page.<br>
+Thanks for the QSO and hope to meet you again on the bands. 73!
+</p>
 </div>
 </div>
 </div>
