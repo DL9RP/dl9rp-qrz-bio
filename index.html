@@ -1,0 +1,447 @@
+<!doctype html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DL9RP – QRZ Bio</title>
+
+    <style>
+      /* ===== TAB LOGIC ===== */
+      .dl9rp-style .panel{display:none;}
+      .dl9rp-style #welcome.panel{display:block;}
+      .dl9rp-style .panel:target{display:block;}
+      .dl9rp-style .panel:target ~ #welcome{display:none;}
+      
+      /* ===== BASE ===== */
+      .dl9rp-style{
+        font-family:Arial,Helvetica,sans-serif;
+        font-size: 24px;
+      }
+      
+      /* ICONS – COULOURED LOOK */
+      .dl9rp-style .ico{
+        opacity:0.85;
+        font-size:25px;
+        width:28px;
+        display:inline-block;
+        text-align:center;
+      }
+      
+      /* OUTER FRAME */
+      .dl9rp-style .wrap{
+        background:#cfdcf0;
+        border:1px solid #9fb0c9;
+        padding:8px;
+        border-radius:8px; 
+      }
+      
+      /* TAB BAR */
+      .dl9rp-style .tabs{
+        display:flex;
+        gap:6px;
+        flex-wrap:wrap;
+        padding-left:0;      /* aligned with content */
+        margin-bottom:6px;   /* gap for inactive tabs */
+      }
+      
+      /* STANDARD TAB */
+      .dl9rp-style .tab{
+        display:inline-flex;
+        align-items:center;
+        gap:6px;
+        background:#e9edf5;
+        border:1px solid #9aa9c0;
+        padding:6px 12px;
+        font-size:16px;
+        text-decoration:none;
+        color:#555;
+        border-radius:6px;
+        position:relative;
+      }
+      
+      /* ACTIVE TAB – CONNECTED */
+      .dl9rp-style .tab.active{
+        background:#ffffff;
+        font-weight:bold;
+        color:#1b4f8a;
+        border-bottom:0;
+        border-radius:6px 6px 0 0;
+        margin-bottom:-7px;  /* 6px gap + 1px border */
+        z-index:5;
+      }
+      
+      /* CONTENT BOX (default) */
+      .dl9rp-style .content{
+        background:#ffffff;
+        border:1px solid #9aa9c0;
+        border-top:0;
+        border-radius:6px;
+        padding:12px;
+        min-height:500px;
+      }
+
+      /* SPECIAL CASE: Welcome active → remove top-left radius */
+      .dl9rp-style .welcome-content{
+        border-radius:0px 6px 6px 6px;
+      }
+      
+      /* TEXT */
+      .dl9rp-style .title{font-size:20px;font-weight:bold;margin:0 0 8px;}
+      .dl9rp-style p{font-size:16px;line-height:1.45;margin:8px 0;}
+      .dl9rp-style .bullets{font-size:16px;margin:0 0 10px 18px;padding:0;}
+      .dl9rp-style .small{font-size:18px;color:#333;}
+      
+      /* SECTION BARS */
+      .dl9rp-style .bar{
+        margin:10px 0 8px 0;
+        padding:5px 10px;
+        border:1px solid #a6a6a6;
+        background:#e00000;
+        color:#ffffff;
+        font-size:16px;
+        border-radius: 8px;
+        font-weight:bold;
+      }
+      .dl9rp-style .bar.amber{
+        background:#f0a000;
+        color:#1f1f1f;
+        border-color:#c99a3c;
+      }
+      
+      /* EQUIPMENT TABLE */
+      .dl9rp-style table.spec{
+        width:100%;
+        border-collapse:collapse;
+        font-size:16px;
+        margin-bottom:8px;
+      }
+      .dl9rp-style table.spec td{
+        padding:3px 6px;
+        vertical-align:top;
+      }
+      .dl9rp-style td.k{width:160px;color:#333;}
+      .dl9rp-style td.v{color:#111;}
+      .dl9rp-style .subhead{
+        font-size:16px;
+        font-weight:bold;
+        margin:6px 0 4px 0;
+        color:#2b2b2b;
+      }
+      
+      /* IMAGE PLACEHOLDERS */
+      .dl9rp-style .imgbox{
+        border:1px solid #c7c7c7;
+        background:#fafafa;
+        margin:10px 0;
+        padding:8px;
+        text-align:center;
+      }
+      .dl9rp-style .imgtx{
+        font-size:11px;
+        color:#666;
+        padding:18px 8px;
+        border:1px dashed #c7c7c7;
+        background:#fff;
+      }
+      .dl9rp-style .imgp{
+        padding:6px 6px 6px 6px;
+        border-radius: 12px;
+        width: 600px;
+        height: auto;
+        font-size: 40px;
+      }
+      .dl9rp-style .imgq{
+        border: 1px solid #161515;
+        border-right:3px solid #646363;
+        border-bottom:4px solid #646363;
+        border-radius: 12px;
+        width: 600px;
+        height: auto;
+        font-size: 40px;
+      }
+      .dl9rp-style .imga{
+        padding:6px 6px 6px 6px;
+        border-radius: 12px;
+        width: 300px;
+        height: auto;
+        font-size: 20px;
+      }
+      
+      /* LINKS */
+      .dl9rp-style a{color:#1b4f8a;}
+      .dl9rp-style a:hover{text-decoration:underline;}
+    </style>
+  </head>
+
+  <body style="margin:0; padding:6px; background:#ffffff;">
+
+    <div class="dl9rp-style">
+
+      <!-- ABOUT -->
+      <section id="about" class="panel">
+        <div class="wrap">
+          <div class="tabs">
+            <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+            <a class="tab active" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+            <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+            <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+            <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+            <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+          </div>
+    
+          <div class="content">
+            <h2 class="title">About Me</h2>
+    
+            <!-- <ul class="bullets">
+              <li><b>Name:</b> Patrick</li>
+              <li><b>Callsign:</b> DL9RP</li>
+              <li><b>QTH:</b> 86695 Nordendorf, Germany</li>
+              <li><b>Locator:</b> JN58jo</li>
+              <li><b>Licensed since:</b> 2023</li>
+            </ul> -->
+            <ul class="bullets">
+              <li><b style="display: inline-block; width: 140px;">Name:</b> Patrick</li>
+              <li><b style="display: inline-block; width: 140px;">Callsign:</b> DL9RP</li>
+              <li><b style="display: inline-block; width: 140px;">QTH:</b> 86695 Nordendorf, Germany</li>
+              <li><b style="display: inline-block; width: 140px;">Locator:</b> JN58jo</li>
+              <li><b style="display: inline-block; width: 140px;">Licensed since:</b> 2023</li>
+            </ul>
+            <p class="small">
+              <b>DARC OV:</b> DOK T21 (Donauwörth) since 2024
+            </p>
+ 
+            <figure>
+              <img class="imga" src="img/BONJE3437.png" alt="&#128553">
+            </figure>            
+
+            <p>
+              Hello my radio friends from all over the world.<br>
+              My name is Patrick and I was born 1983 in south Germany.
+              I live there for over 40 years and got infected with the HF-virus by the age of 10.
+              I started with CB-Radio in 1993 but due to lack of a good antenna unfortunately I got almost no DX contacts.
+            </p>
+            
+            <p>
+              After years of silence my friend Michael
+              <a href="https://www.qrz.com/db/DO1WMA" target="_blank" rel="noopener"><b>DO1WMA</b></a>
+              brought me back ON THE Air again and so 2023 I got my HAM license.
+            </p>
+    
+            <p>
+              Besides HAM radio there are a lot of different hobbies, as there should to be mentioned diving,
+              astronomy, astrophotography or go camping with my new love "Bully"... ;-).
+            </p>
+    
+            <!-- <p class="small">
+              <b>DARC OV:</b> T21 (Donauwörth) since 2024
+            </p> -->
+
+          </div>
+        </div>
+      </section>
+    
+      <!-- QSL -->
+      <section id="qsl" class="panel">
+        <div class="wrap">
+          <div class="tabs">
+            <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+            <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+            <a class="tab active" href="#qsl"><span class="ico">⇄</span>QSL</a>
+            <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+            <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+            <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+          </div>
+    
+          <div class="content">
+            <h2 class="title">QSL Info</h2>
+    
+            <div class="bar amber">QSL via</div>
+    
+            <p class="small">
+             <!--  QSL via: --> <b>QRZ.com</b>, <b>LoTW</b>, <b>eQSL.cc</b> and <b>Bureau</b>.<br><br>
+              Please include band / mode / date (UTC).<br>
+              <b>DOK: T21</b>
+            </p>
+    
+            <div class="bar red">Notes</div>
+            <ul class="bullets">
+              <li>I try to keep confirmations up to date</li>
+              <li>No direct paper QSL required</li>
+            </ul>
+    
+            <div class="imgbox">
+              <!-- <div class="imgtx">Add pictures here later (QRZ image links or uploads)</div> -->
+              <figure>
+                <!-- <figcaption>Text oberhalb</figcaption> -->
+                <img class="imgq" src="img/XJTQ5322.png" alt="&#128553"><br>
+                <!-- <figcaption>Text unterhalb</figcaption>
+              <div class="imgph">[Optional: add a QSL picture here later]</div> -->
+            </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- EQUIPMENT -->
+      <section id="equipment" class="panel">
+        <div class="wrap">
+          <div class="tabs">
+            <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+            <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+            <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+            <a class="tab active" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+            <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+            <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+          </div>
+    
+          <div class="content">
+            <h2 class="title">Equipment</h2>
+    
+            <div class="bar red">Home QTH</div><br>
+
+            <div style="display: flex; justify-content: flex-start; align-items: flex-start; gap: 30px;">
+            <!-- Tabelle nimmt nur so viel Platz ein, wie sie braucht -->
+            <table class="spec" style="width: auto; border-collapse: collapse;">
+              <tr><td class="k">Transceiver No.1:</td><td class="v">Icom IC-7300 (160–4m)</td></tr>
+              <tr><td class="k">Transceiver No.2:</td><td class="v">Yaesu FTX-1 Optima (160m–70cm)</td></tr>
+              <tr><td class="k">Output:</td><td class="v">max. 100W</td></tr>
+              <tr><td class="k">Microphone:</td><td class="v">Thomann t.bone BD200</td></tr>
+            </table>
+            
+
+            <!-- Das Bild auf der rechten Seite -->
+            <img src="img/IMG_7396.png" style="width: 400px; height: auto; border-radius: 10px;"">
+            </div>
+    
+            <div class="subhead">Antennas</div>
+            <ul class="bullets">
+              <li>Hexbeam EAntenna HEX6B (6m – 20m)</li>
+              <li>Wire antenna 13.5m with CG-3000 antenna tuner</li>
+              <li>Diamond X-50 for 2m/70cm operation</li>
+            </ul><br>
+    
+            <div class="bar red">Portable</div><br>
+
+            <div style="display: flex; justify-content: flex-start; align-items: flex-start; gap: 30px;">
+            <!-- Tabelle nimmt nur so viel Platz ein, wie sie braucht -->
+            <table class="spec" style="width: auto; border-collapse: collapse;">
+              <tr><td class="k">Transceiver No.1:</b></td><td class="v">Elecraft KX2</td></tr>
+              <tr><td class="k">Transceiver No.2:</td><td class="v">Yaesu FTX-1 Field (160m–70cm)</td></tr>
+              <tr><td class="k">Output:</td><td class="v">max. 10/100W</td></tr>
+            </table>
+
+            <!-- Das Bild auf der rechten Seite -->
+            <img src="img/IMG_7414.png" style="width: 400px; height: auto; border-radius: 10px;">
+            <img src="img/IMG_7959.png" style="width: 400px; height: auto; border-radius: 10px;">
+            </div>
+
+            <!-- <p class="small">
+              Add your portable rig / battery / antennas here later (if you want it like OE4JHW’s sections).
+            </p> -->
+          </div>
+        </div>
+      </section>
+    
+      <!-- POTA -->
+      <section id="pota" class="panel">
+        <div class="wrap">
+          <div class="tabs">
+            <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+            <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+            <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+            <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+            <a class="tab active" href="#pota"><span class="ico">🌲</span>POTA</a>
+            <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+          </div>
+    
+          <div class="content">
+            <h2 class="title">Parks On The Air</h2>
+    
+            <div class="bar red">Portable / Outdoor Operation</div>
+    
+            <p>
+              Portable operation fits perfectly with my outdoor hobbies — simple setups, quick deployment and fun from nature.
+            </p>
+    
+            <ul class="bullets">
+              <li>HF portable operation</li>
+              <li>Battery powered setups</li>
+              <li>Wire & lightweight antennas</li>
+            </ul>
+
+            <p><iframe src="https://pota-stats.wd4dan.net/?call=DL9RP" height="1250" width="1000" frameborder="0" scrolling="no"></iframe></p>
+    
+            <div class="imgbox">
+              <div class="imgph">[Add POTA image / screenshot here later]</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- PICTURES -->
+      <section id="pictures" class="panel">
+        <div class="wrap">
+          <div class="tabs">
+            <a class="tab" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+            <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+            <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+            <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+            <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+            <a class="tab active" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+          </div>
+    
+          <div class="content">
+            <h2 class="title">Pictures</h2>
+    
+            <div class="bar red">My Hometown / Radio / Outdoor</div>
+    
+            <div class="imgbox">
+              <!-- <div class="imgtx">Add pictures here later (QRZ image links or uploads)</div> -->
+              <figure>
+                <!-- <figcaption>Text oberhalb</figcaption> -->
+                <img class="imgp" src="img/XJTQ5322.png" alt="&#128553"><br>
+                <!-- <figcaption>Text unterhalb</figcaption> -->
+
+                <img class="imgp" src="img/JBYS5373.png" alt="&#128553"><br>
+                <img class="imgp" src="img/ORYN1223.png" alt="&#128553"><br>
+                <img class="imgp" src="img/WCAQE9501.png" alt="&#128553"><br>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- WELCOME (default – MUST be last) -->
+      <section id="welcome" class="panel default">
+        <div class="wrap">
+          <div class="tabs">
+            <a class="tab active" href="#welcome"><span class="ico">🎙</span>WELCOME</a>
+            <a class="tab" href="#about"><span class="ico">💡</span>ABOUT ME</a>
+            <a class="tab" href="#qsl"><span class="ico">⇄</span>QSL</a>
+            <a class="tab" href="#equipment"><span class="ico">⚙</span>EQUIPMENT</a>
+            <a class="tab" href="#pota"><span class="ico">🌲</span>POTA</a>
+            <a class="tab" href="#pictures"><span class="ico">📷</span>PICTURES</a>
+          </div>
+    
+          <div class="content welcome-content">
+            <h2 class="title">Welcome</h2>
+    
+            <p>
+              Welcome to my QRZ.com page.<br>
+              Thanks for the QSO and hope to meet you again on the bands. 73!
+            </p><br><br><br><br><br><br><br><br><br>
+
+            <h2 class="title">HF-Conditions</h2>
+
+            <p><a href="https://www.hamqsl.com/solar.html" title="Click to add Solar-Terrestrial Data to your website!"><img src="https://www.hamqsl.com/solar101pic.php" /></a></p>
+          </div>
+        </div>
+      </section>
+      
+    </div>
+
+  </body>
+
+</html>
